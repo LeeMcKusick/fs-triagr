@@ -1,0 +1,28 @@
+<div id="{{ticket.num + 'title'}}" class="mdl-card__title">
+	<div class="mdl-card__title-text">
+		<a href="{{ticket.url}}" target="_blank">{{ticket.num}}</a>
+	</div>
+</div>
+
+<div class="mdl-card__menu">
+	
+	<div class="recycled" ng-show="ticket.queue.indexOf('Recycled') != -1">
+		<button id="{{ticket.num + 'recycled'}}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab  mdl-button--colored">
+			<span class="material-icons">cached</span>
+		</button>
+		<div class="mdl-tooltip mdl-tooltip--large" for="{{ticket.num + 'recycled'}}">Recycled</div>
+	</div>
+	
+	<div class="urgency" ng-show="ticket.urgencyLabel.indexOf('High') != -1">
+		<button id="{{ticket.num + 'high'}}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab  mdl-button--colored">
+			<span class="material-icons">{{ ticket.getTicketTypeIcon() }}</span>
+		</button>
+		<div class="mdl-tooltip mdl-tooltip--large" for="{{ticket.num + 'high'}}" data-upgraded=",MaterialTooltip">High Urgency</div>
+	</div>
+	<button id="{{ticket.num + 'ticketType'}}" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ticketTypeIcon" title="{{ticket.ticketTypeLabel}}">
+		<span class="material-icons">bug_report</span>
+	</button>
+	<div class="mdl-tooltip mdl-tooltip--large" for="{{ticket.num + 'ticketType'}}">Report Problem/Error</div>
+	<div class="dateCreated date" id="{{ticket.num + 'dateCreated'}}">{{ticket.dateCreated | date:"MM/dd/yyyy 'at' h:mma"}}</div>
+	<div class="mdl-tooltip mdl-tooltip--large dateUpdated date" for="{{ticket.num + 'dateCreated'}}">8/10/15 2:39 PM</div>
+</div>

@@ -1,0 +1,258 @@
+.mdl-layout__header,
+.mdl-layout__drawer-button, .mdl-layout__header-row .mdl-navigation__link, .mdl-layout-title a {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white !important;
+}
+
+.mdl-layout-title a { text-decoration: none; }
+
+#tickets { margin-bottom: 100px; }
+#tickets>.mdl-cell { 
+	/*min-width: 330px; */
+}
+
+.mdl-card { 
+	overflow: visible;
+}
+
+section.ticketCell { display: block; margin-top: 30px; }
+section.ticketCell .ticketCard { width: 70%; margin: 0 auto; }
+
+#loginWrapper {     width: 300px;
+    margin: 100px auto 0px; }
+.loginSubmit { color: white !important; }
+  .demo-card-wide.mdl-card {
+    /* width: 100%; */
+	/*min-width: 330px;*/
+  }
+  .demo-card-wide > .mdl-card__title {
+	padding-right: 60px;
+  }
+  .demo-card-wide > .mdl-card__menu {
+	
+  }
+  
+.mdl-card__title-text a {text-decoration: none; }
+
+.mdl-button { color: rgba(0,0,0,0.75); }
+
+.mdl-tooltip { z-index: 9999; }
+.mdl-tooltip--large { line-height: 18px; }
+.mdl-card__supporting-text { padding: 6px 16px 12px; }
+
+.mdl-data-table { margin: 0 auto; }
+.mdl-data-table tr { height: 32px !important; }
+.mdl-data-table td { height: 32px; padding: 6px 24px 0; }
+.mdl-data-table td:nth-child(1) { font-weight: bold; }
+
+.details { padding-bottom: 0px;   overflow-y: auto;
+  max-height: 700px; }
+.team { }
+.priority { width: 70px; }
+
+
+p { margin-bottom: 14px; }
+
+.hiddenTicket {
+  animation-name: hideTicket;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+	/*
+	transition: height 2s;
+	min-width: 0px;
+	min-height: 0px;
+*/
+	}
+
+@keyframes hideTicket { 
+	0% { max-width: 600px; max-height: 900px;}
+	99% { max-width: 0px; max-height: 0px; }
+	100% { max-width: 0px; max-height: 0px; display: none;}
+}
+
+.focused .ticketCard { box-shadow: 0px 2px 2px 0px rgba(255, 64, 129, 0.6), 0px 3px 1px -2px rgba(255, 64, 129, 0.7), 0px 1px 5px 0px rgba(255, 64, 129, 0.6); }
+/*.focused .ticketCard { border: 1px solid #FF4081; }*/
+
+.dropdowns { overflow: visible; padding-top: 0px;}
+.dropdowns label {   
+	color: rgba(0,0,0,0.54);
+	font-size: 15px;
+	font-weight: 500; 
+}
+
+.moduleCell { cursor: pointer; }
+
+.chosen-container { width: 100% !important; }
+
+.commentBox { width: calc(100% - 30px); }
+.commentBox textarea, .commentBox label { width: 100%; }
+.comments>span { vertical-align: top; float: right; }
+.dateUpdated:before { content: "Last Updated: " }
+
+.dateCreated { display: inline-block; margin-top: 12px; margin-left: 8px; vertical-align: top; color: rgba(0,0,0,0.54); }
+.urgency { display: inline-block; margin-right: 4px; }
+.recycled { display: inline-block; margin-left: 12px; margin-right: 4px; }
+.actions { display: inline-block; padding-top: 4px; }
+.ticketActions .action { float:right; }
+.info { display: inline-block; width: 32%; }
+.info>span { vertical-align: middle; margin-left: 6px; }
+.contactInfo>div {  min-width: 150px; }
+.contactInfo>div>span { display: inline-block; vertical-align: middle; width: calc(70% - 3px); margin-left: 3px; }
+.info2 { display: inline-block; width: 48%; }
+.info2>span { vertical-align: middle; margin-left: 6px; }
+.account { min-width: 200px; }
+
+.ticketCount div { vertical-align: middle; }
+
+.overlayWrapper { position: absolute; top: 0; left; 0; display: none; width: 100%; height: 100%; background: rgba( 0,0,0, 0.84); z-index: 1000000000;}
+
+.overlay { 
+	position: fixed;
+	top: 0px;
+	left: 50%;
+	margin-left: -175px;
+	width: 350px;
+	padding: 20px;
+}
+
+.guidelines { background: white; }
+
+.closed  { opacity: 0.3; }
+.highlight { 
+	background: rgba(255, 64, 129, 0.87);
+	color: white;
+    padding: 2px 2px;
+    margin: 0px -1px;
+	border-radius: 4px;
+}
+
+#loading { 
+	width: 100%;
+	height: 100%;
+}
+#loadingBar { 
+	width: 400px;
+	margin: 200px auto 0px;	
+}
+#loadingSpinnerWrapper { 
+	width: 50px;
+	margin: 200px auto 0px;	
+}
+
+#errorMsg{ display: none; width: 100%; }
+#errorMsg h1 { color: rgb(255,64,129); width: 100%; text-align: center; }
+
+#noTickets { display: none; width: 100%; }
+#noTickets  div { color: rgba(0,0,0,0.38); width: 100%; text-align: center; margin-top: 200px; font-size: 1.5em; }
+
+
+#userScreen {
+	display: none;
+	position: absolute;
+	width: 100%; 
+	height: 100%;
+	background-color: rgba(40,40,40,1);
+	text-align: center;
+	z-index: 99999999;
+}
+
+
+
+#userScreen div {
+	margin-top: 250px;
+}
+#userScreen h1 { 
+	margin-bottom: 30px;
+	font-size:6.5em;
+	color:#fff;
+	font-weight:700;
+}
+
+#userScreen input[type="text"] {
+  padding: 10px;
+  border: solid 5px #c9c9c9;
+  box-shadow: inset 0 0 0 1px #707070;
+  transition: box-shadow 0.3s, border 0.3s;
+  width: 300px;
+}
+#userScreen input[type="text"]:focus,
+#userScreen input[type="text"].focus {
+  border: solid 5px #969696;
+}
+
+
+@media (max-width: 600px) {
+	section.ticketCell .ticketCard { width: 100%; }
+
+	#snackbar { 
+		position: absolute; 
+		width: calc(100% - 40px); 
+		bottom: 0px;  
+		/* left: 50%;
+		margin-left: -240px;
+		*/
+		background: #323232; 
+		/*
+		height: 48px; 
+		*/
+		line-height: 28px; 
+		color: white; 
+		display: none;
+		z-index: 99999999999;
+		padding: 12px 20px;
+	}
+}
+@media (min-width: 600px) {
+	#snackbar { 
+		position: absolute; 
+		width: 480px; 
+		bottom: 0px;  
+		left: 50%;
+		margin-left: -240px;
+		background: #323232; 
+		height: 48px; 
+		line-height: 48px; 
+		color: white; 
+		display: none;
+		z-index: 99999999999;
+		padding: 0 20px;
+	}
+}
+
+
+
+.attachmentsList { list-style-type: none; padding: 0;}
+.attachmentsList li a { padding: 16px 0px 16px 48px; display: block;}
+
+.attachmentsList li a[data-name $='.pdf'] { 
+   background: transparent url(../images/linkcues/pdf.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.jpg'], .attachmentsList li a[data-name $='.JPG'], .attachmentsList li a[data-name $='.jpeg'], .attachmentsList li a[data-name $='.JPEG'] { 
+   background: transparent url(../images/linkcues/jpg.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.xlsx'], .attachmentsList li a[data-name $='.XLSX'] { 
+   background: transparent url(../images/linkcues/xlsx.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.xls'] { 
+   background: transparent url(../images/linkcues/xls.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.png'] { 
+   background: transparent url(../images/linkcues/png.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.gif'] { 
+   background: transparent url(../images/linkcues/gif.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.doc'] { 
+   background: transparent url(../images/linkcues/doc.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.docx'] { 
+   background: transparent url(../images/linkcues/docx.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.wav'] { 
+   background: transparent url(../images/linkcues/wav.png) no-repeat center left;
+}
+.attachmentsList li a[data-name $='.html'] { 
+   background: transparent url(../images/linkcues/html.png) no-repeat center left;
+}

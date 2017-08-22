@@ -1,0 +1,140 @@
+.redactor-editor div,
+.redactor-editor span,
+.redactor-editor applet,
+.redactor-editor object,
+.redactor-editor iframe,
+.redactor-editor h1,
+.redactor-editor h2,
+.redactor-editor h3,
+.redactor-editor h4,
+.redactor-editor h5,
+.redactor-editor h6,
+.redactor-editor p,
+.redactor-editor blockquote,
+.redactor-editor pre,
+.redactor-editor a,
+.redactor-editor abbr,
+.redactor-editor acronym,
+.redactor-editor address,
+.redactor-editor big,
+.redactor-editor cite,
+.redactor-editor code,
+.redactor-editor del,
+.redactor-editor dfn,
+.redactor-editor em,
+.redactor-editor img,
+.redactor-editor ins,
+.redactor-editor kbd,
+.redactor-editor q,
+.redactor-editor s,
+.redactor-editor samp,
+.redactor-editor small,
+.redactor-editor strike,
+.redactor-editor strong,
+.redactor-editor sub,
+.redactor-editor sup,
+.redactor-editor tt,
+.redactor-editor var,
+.redactor-editor b,
+.redactor-editor u,
+.redactor-editor i,
+.redactor-editor center,
+.redactor-editor dl,
+.redactor-editor dt,
+.redactor-editor dd,
+.redactor-editor ol,
+.redactor-editor ul,
+.redactor-editor li,
+.redactor-editor fieldset,
+.redactor-editor form,
+.redactor-editor label,
+.redactor-editor legend,
+.redactor-editor table,
+.redactor-editor caption,
+.redactor-editor tbody,
+.redactor-editor tfoot,
+.redactor-editor thead,
+.redactor-editor tr,
+.redactor-editor th,
+.redactor-editor td,
+.redactor-editor article,
+.redactor-editor aside,
+.redactor-editor canvas,
+.redactor-editor details,
+.redactor-editor embed,
+.redactor-editor figure,
+.redactor-editor figcaption,
+.redactor-editor footer,
+.redactor-editor header,
+.redactor-editor hgroup,
+.redactor-editor menu,
+.redactor-editor nav,
+.redactor-editor output,
+.redactor-editor ruby,
+.redactor-editor section,
+.redactor-editor summary,
+.redactor-editor time,
+.redactor-editor mark,
+.redactor-editor audio,
+.redactor-editor video {
+  margin: 0;
+  padding: 0;
+	background-color: transparent;
+  border: 0;
+	color: #000;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+.redactor-editor h1 { font-size: 2em }
+.redactor-editor h2 { font-size: 1.5em }
+.redactor-editor h3 { font-size: 1.17em }
+.redactor-editor h5 { font-size: .83em }
+.redactor-editor h6 { font-size: .67em }
+.redactor-editor p { margin: 1em 0 }
+
+.redactor-editor article,
+.redactor-editor aside,
+.redactor-editor details,
+.redactor-editor figcaption,
+.redactor-editor figure,
+.redactor-editor footer,
+.redactor-editor header,
+.redactor-editor hgroup,
+.redactor-editor menu,
+.redactor-editor nav,
+.redactor-editor section {
+  display: block;
+}
+.redactor-editor ul,
+.redactor-editor ol {
+	list-style-type: disc;
+	list-style-position: outside;
+	list-style-image: none;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	padding-left: 40px;
+}
+.redactor-editor ol {
+	list-style-type: decimal;
+}
+.redactor-editor blockquote,
+.redactor-editor q {
+  quotes: none;
+}
+.redactor-editor blockquote:before,
+.redactor-editor blockquote:after,
+.redactor-editor q:before,
+.redactor-editor q:after {
+  content: '';
+  content: none;
+}
+.redactor-editor table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.redactor-editor {
+	background: #FFF !important;
+	color: #000 !important;
+}

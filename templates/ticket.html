@@ -1,0 +1,196 @@
+<div id="{{ticket.number}}" class="mdl-cell mdl-cell--4-col ticketCell">
+  <div id="{{ticket.number}}card" class="mdl-card mdl-shadow--2dp demo-card-wide ticketCard">
+	<div id="{{ticket.number}}title" class="mdl-card__title">
+	  <div class="mdl-card__title-text">
+		<a href="https://supportcenteronline.com/ics/tt/ticketDetail.asp?ticketNum={{ticket.number}}" target="_blank">{{ticket.number}}</a>
+	  </div>
+	</div>
+	<div class="mdl-card__menu">
+	  <button id="{{ticket.number}}ticketType" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab ticketTypeIcon"
+	  title="Ask A Question">
+		<span class="material-icons">help_outline</span>
+	  </button>
+	  <div class="mdl-tooltip mdl-tooltip--large" for="{{ticket.number}}ticketType">Ask A Question</div>
+	  <div class="dateCreated date" id="{{ticket.number}}dateCreated">{{ticket.dateCreated | date}}</div>
+	  <div class="mdl-tooltip mdl-tooltip--large dateUpdated date" id="{{ticket.number}}dateUpdated" for="{{ticket.number}}dateCreated"
+	 >{{ticket.dateUpdated | date}}</div>
+	</div>
+	<div class="mdl-card__supporting-text">
+	  <div class="mdl-grid contactInfo">
+		<div class="mdl-cell mdl-cell--6-col contactCell">
+		<button id="{{ticket.number}}contact" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab contactButton"
+		data-contactid="{{ticket.contactID}}">
+		  <span class="material-icons">person</span>
+		</button> 
+		<span class="contactName">{{ticket.contactName}}</span>
+		<div class="mdl-tooltip" for="{{ticket.number}}contact">Contact</div></div>
+		<div class="mdl-cell mdl-cell--6-col accountCell">
+		<button id="{{ticket.number}}account" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab accountButton">
+		  <span class="material-icons">school</span>
+		</button> 
+		<span class="accountName">{{ticket.accountName}}</span>
+		<div class="mdl-tooltip" for="{{ticket.number}}account">Account</div></div>
+		<div class="mdl-cell mdl-cell--6-col slaCell">
+		<button id="{{ticket.number}}sla" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab slaButton"
+		>
+		  <span class="material-icons">receipt</span>
+		</button> 
+		<span class="slaName">ticket.slaName</span>
+		<div class="mdl-tooltip" for="{{ticket.number}}sla">Sla</div></div>
+		<div class="mdl-cell mdl-cell--6-col moduleCell">
+		<button id="{{ticket.number}}module" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab moduleButton"
+		>
+		  <span class="material-icons">settings</span>
+		</button> 
+		<span class="moduleName">Google Analytics</span>
+		<div class="mdl-tooltip" for="{{ticket.number}}module">Module</div></div>
+	  </div>
+	</div>
+	<div class="mdl-card__supporting-text mdl-card--border details" id="{{ticket.number}}details">
+	  <p>
+		<strong>Duplicate pages</strong>
+	  </p>
+	  <p>Hi, I ran a report on our top ten and least view pages, and I was wondering why there are some pages that appear
+	  multiple times. For example in the arts section, the 3 top viewed pages dance, music, and drama.</p>
+	  <p>When I change the order, I see that VIsual arts, drama are the least viewed as well.</p>
+	  <p>I tried to get through to support and couldn&#39;t , so if it&#39;s easier to discuss this over the phone please call
+	  my number 203.577.4565 Thank you!</p>
+	</div>
+	<div class="mdl-card__supporting-text mdl-card--border dropdowns" id="{{ticket.number}}dropdowns">
+	  <div class="mdl-grid">
+		<div class="mdl-cell mdl-cell--6-col">
+		  <div class="teamBlock">
+			<label>Team</label>
+			<div>
+			  <select class="asc" data-fieldid="113064" data-fieldname="Team" id="{{ticket.number}}team" style="display: none;">
+				<option value="">--</option>
+				<option value="241453">*Miscellaneous</option>
+				<option value="241455">Alerts</option>
+				<option value="241456">API</option>
+				<option value="241457">Apply</option>
+				<option value="241458">Athletics</option>
+				<option value="241459">Attendance</option>
+				<option value="241460">Banners/Layouts</option>
+				<option value="241461">Blogs/Forums</option>
+				<option value="241462">Calendars</option>
+				<option value="241463">Classes/Group Spaces</option>
+				<option value="241464">Commerce</option>
+				<option value="241465">Composer</option>
+				<option value="241466">Constituents</option>
+				<option value="241467">Crisis Mode</option>
+				<option value="241468">Dropbox Annotation Tool</option>
+				<option value="241469">Dashboard</option>
+				<option value="241470">Data Exports</option>
+				<option value="241471">Data Restores</option>
+				<option value="241472">Data Cleanup</option>
+				<option value="241473">Data Uploads</option>
+				<option value="241474">Design: Assets/Misc.</option>
+				<option value="241475">Domain Names</option>
+				<option value="241476">Dropbox</option>
+				<option value="241477">Email Deliverability</option>
+				<option value="241478">eNotify</option>
+				<option value="241479">Files</option>
+				<option value="241480">Forms</option>
+				<option value="241481">Google Analytics &amp; Tracking</option>
+				<option value="241482">Google Drive</option>
+				<option value="241483">Gradebook</option>
+				<option value="241484">Groups</option>
+				<option value="241485">iOS App</option>
+				<option value="241487">Media</option>
+				<option value="241488">fsSocial</option>
+				<option value="241489">Mobile Site (Stand Alone)</option>
+				<option value="241490">News</option>
+				<option value="241491">Page Pops</option>
+				<option value="241492">Pages</option>
+				<option value="241493">Parature/Support Portal</option>
+				<option value="241494">Payment Gateway Setups</option>
+				<option value="241495">Payments</option>
+				<option value="241496">Permissions</option>
+				<option value="241497">Portals</option>
+				<option value="241498">Quizzes</option>
+				<option value="241499">Redactor</option>
+				<option value="241500">Registrations</option>
+				<option value="241501">Search Engine Optimization</option>
+				<option value="241502">Services (Module)</option>
+				<option value="241503">Site Launch</option>
+				<option value="241504">Site Performance</option>
+				<option value="241505">Site Search</option>
+				<option value="241506">Social Media</option>
+				<option value="241507">Student Information Systems</option>
+				<option value="241508">TinyMCE</option>
+				<option value="241520">Site Setup</option>
+				<option value="241521">SSO/Authentication</option>
+				<option value="241522">Design: Photos and Media</option>
+				<option value="241523">Design: Layout and Content</option>
+				<option value="241527">End of Year</option>
+				<option value="241528">Phones (Genesys)</option>
+			  </select>
+			  <div class="chosen-container chosen-container-single" style="width: 197px;" title="" id="{{ticket.number}}team_chosen">
+				<a class="chosen-single" tabindex="-1">
+				  <span>--</span>
+				</a>
+				<div class="chosen-drop">
+				  <div class="chosen-search">
+					<input type="text" autocomplete="off" />
+				  </div>
+				  <ul class="chosen-results"></ul>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		<div class="mdl-cell mdl-cell--6-col">
+		  <div class="priorityBlock">
+			<label class="priorityLabel" data-suggested-priority="130">Priority (Suggested: 130)</label>
+			<div>
+			  <select class="desc" data-fieldid="113065" data-fieldname="Priority" id="{{ticket.number}}priority" style="display: none;">
+				<option value="">--</option>
+				<option value="241510">190</option>
+				<option value="241511">180</option>
+				<option value="241512">170</option>
+				<option value="241513">160</option>
+				<option value="241514">150</option>
+				<option value="241515">140</option>
+				<option value="241516">130</option>
+				<option value="241517">120</option>
+				<option value="241518">110</option>
+				<option value="241519">100</option>
+				<option value="241509">200</option>
+			  </select>
+			  <div class="chosen-container chosen-container-single" style="width: 48px;" title="" id="{{ticket.number}}priority_chosen">
+				<a class="chosen-single" tabindex="-1">
+				  <span>--</span>
+				</a>
+				<div class="chosen-drop">
+				  <div class="chosen-search">
+					<input type="text" autocomplete="off" />
+				  </div>
+				  <ul class="chosen-results"></ul>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	<div id="{{ticket.number}}comments" class="mdl-card__supporting-text mdl-card--border comments">
+	  <div class="mdl-textfield mdl-js-textfield commentBox is-upgraded" data-upgraded=",MaterialTextfield">
+		<textarea class="mdl-textfield__input" type="text" id="{{ticket.number}}commentText"></textarea>
+	  </div>
+	  <span id="{{ticket.number}}commentExpand" class="material-icons commentExpand" data-commentbox="{{ticket.number}}comments">expand_less</span>
+	</div>
+	<div class="ticketActions mdl-card__actions mdl-card--border">
+	<button class="action triageButton mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--colored"
+	id="{{ticket.number}}triage" data-ticketnum="{{ticket.number}}" data-upgraded=",MaterialButton,MaterialRipple">TRIAGE</button> 
+	<button class="action salesButton mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--colored"
+	id="{{ticket.number}}sales" data-ticketnum="{{ticket.number}}" data-upgraded=",MaterialButton,MaterialRipple">SALES</button> 
+	<button class="action ssButton mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--colored"
+	id="{{ticket.number}}ss" data-ticketnum="{{ticket.number}}" data-upgraded=",MaterialButton,MaterialRipple">SS</button> 
+	<a class="action mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--colored"
+	href="http://staff.finalsite.com/custom/parajira/?ticket_id={{ticket.number}}&amp;task_id=1" target="_blank"
+	data-upgraded=",MaterialButton,MaterialRipple">BUG</a> 
+	<button class="action publicCommentButton mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--colored"
+	id="{{ticket.number}}publicComment" data-ticketnum="{{ticket.number}}" data-upgraded=",MaterialButton,MaterialRipple">COMMENT</button></div>
+  </div>
+</div>
+
