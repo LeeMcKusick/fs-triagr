@@ -3,35 +3,37 @@
 var app = angular.module('triagrApp', ['triagrTickets', 'angular-redactor', 'ui.bootstrap']);
 
 app.controller('TriagrController', ['$scope','$http', function($scope, $http){
+	
 	var triagr = this;
 
-
+	//Set up names and IDs for CSR accounts.
 	triagr.csrs = [
 		{ name: 'Joe Test 1', id: 22684 },
 		{ name: 'Joe Test 2', id: 22466 },
-
 	];
 
+	
+	//Set app defaults.
 	triagr.tickets = [];
 	triagr.updateLog = [];
 	triagr.loading = 1;
 	triagr.ticketsCount = 0;
 
-	//console.log(triagr);
-	//console.log($scope.triagr);
-
+	//Fetch select input options
 	$http.get('getFieldOptions-Angular.cfm').success (function( data ) {
 		triagr.team = data[0].Team;
 		triagr.priority = data[0].Priority;
 		triagr.productFamily = data[0]["Product Family"];
 		triagr.initialPriority = data[0]["Priority (T)"];
-		console.log('test');
-		console.log(triagr.initialPriority);
 	});
 
+	
+	/*
+	* Updates account details
+	*/
 	triagr.updateAccount = function(t) {
 		t.loadingUpdateAcc = 1;
-		$http.get('updateAccountDetails.cfm?account='+t.account.id).success( function(data) {
+		$http.get('updateAccountDetails.cfm?account='+t.account.id ).success( function(data) {
 			console.log(data);
 			t.account.url = data.url;
 			t.account.keyword = data.keyword;
@@ -49,8 +51,11 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		$scope.$apply();
 	}
 
+	/*
+	* Refreshes the ticket list. Can either pull from a 
+	* list of the current user's tickets, or from a ticket view.
+	*/
 	triagr.refreshTickets = function() {
-
 		triagr.tickets = [];
 		triagr.loading = 1;
 		if (myTickets) {
@@ -60,7 +65,6 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		}
 		$http.get(pullURL).success( function( data ) {
 			triagr.lastPull = Date.now();
-			console.log(data);
 			angular.forEach(data, function(t, key) {
 				//t.attachments = $.parseJSON( t.attachments );
 				t.loadingHistory = 0;
@@ -70,14 +74,9 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 				t.history = [];
 				t.visible = 1;
 				t.comment = '';
-				var dc = t.dateCreated;
-				dc = new Date(dc);
 				t.dateCreated = new Date(t.dateCreated);
 				t.dateUpdated = new Date(t.dateUpdated);
-
-			 	t.elapsedTime = parseMinutes(workingMinutesBetweenDates(dc, Date.now()));
-
-
+			 	t.elapsedTime = parseMinutes(workingMinutesBetweenDates(t.dateCreated, Date.now()));
 			});
 			triagr.tickets = data;
 			triagr.ticketsCount = triagr.tickets.length;
@@ -85,9 +84,13 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		});
 	}
 
+	//Refresh tickets when app loads
 	triagr.refreshTickets();
 
-
+	/*
+	* Function to remove ticket from view, then remove it
+	* from the DOM
+	*/
 	triagr.removeTicket = function( id ){
 		$('#'+id).slideUp( function(){
 		var t = $.grep(triagr.tickets, function(obj) {
@@ -100,6 +103,9 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		});
 	}
 
+	/*
+	* Resets a ticket's comment pane
+	*/
 	triagr.clearComment = function( id ){
 		var t = $.grep(triagr.tickets, function(obj) {
 			return obj.num === id;
@@ -109,6 +115,10 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 
 	}
 
+	/*
+	* Updates the ticket's team setting in Parature.
+	* Called when Team dropdown changes
+	*/
 	triagr.updateTeam = function (t) {
 		t.teamLabel = jQuery.grep(triagr.team.options, function(obj) {
 			return obj.optionID === t.team;
@@ -117,6 +127,11 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		fieldsToUpdate = [{field: 'team', fieldID: triagr.team.fieldID}];
 		sendMessage('update', t, fieldsToUpdate);
 	}
+	
+	/*
+	* Updates the ticket's priority setting in Parature.
+	* Called when Priority dropdown changes
+	*/
 	triagr.updatePriority = function (t) {
 		t.priorityLabel = jQuery.grep(triagr.priority.options, function(obj) {
 			return obj.optionID === t.priority;
@@ -138,6 +153,10 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		sendMessage('update', t, fieldsToUpdate);
 	}
 
+	/*
+	* Updates the ticket's initial priority setting in Parature.
+	* Called when Priority changes for the first time.
+	*/
 	triagr.updateInitialPriority = function(t) {
 		if (t.priority > 0) {
 			t.initialPriorityLabel = t.priorityLabel;
@@ -152,6 +171,10 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		}
 	}
 
+	/*
+	* Updates the ticket's product family setting in Parature.
+	* Called when Product Family dropdown changes
+	*/
 	triagr.updateProductFamily = function (t) {
 		t.productFamilyLabel = jQuery.grep(triagr.productFamily.options, function(obj) {
 			return obj.optionID === t.productFamily;
@@ -159,7 +182,12 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		sendMessage('update', t, 'productFamily', triagr.productFamily.fieldID);
 	}
 
-
+	/*
+	* Function to Triage ticket
+	* Includes error checking for tickets marked with a low 
+	* team priority and a high customer urgency.
+	* 
+	*/
 	triagr.triage = function(t) {
 		if (t.team > 0 && t.priority > 0 ) {
 			if (t.urgencyLabel == 'High' && t.priorityLabel == '150') {
@@ -186,6 +214,10 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 			displayMessage('Make sure you have Team and Priority set.', 'OOPS', 'warning');
 		}
 	}
+	
+	/*
+	* Posts a private comment
+	*/
 	triagr.postInternalComment = function(t) {
 		if ( t.comment.length ) {
 			sendMessage('internalComment', t);
@@ -193,6 +225,10 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 			displayMessage('Please enter a comment.', 'OOPS', 'warning');
 		}
 	}
+	
+	/*
+	* Posts a customer-facing comment to the ticket
+	*/
 	triagr.postComment = function(t) {
 		if ( t.comment.length ) {
 			var c = confirm('Are you sure you want to add a public comment for ticket ' + t.num + '?');
@@ -206,11 +242,17 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		triagr.triageNMI = function(t) {
 			sendMessage('triageNMI', t);
 		}
-
+	/*
+	* Send ticket to SS team.
+	*/
 	triagr.sendToSS = function(t) {
 		sendMessage('schoolsuite',t);
 	}
 
+	/*
+	* Assign a ticket directly to a CSR
+	* Checks to make sure Team and Priority are set first.
+	*/
 	triagr.assignTo = function (t, csr, name) {
 		if (t.team > 0 && t.priority > 0 ) {
 			var c = confirm('Are you sure you want to send ' + t.num + ' to ' + name + '?');
@@ -222,6 +264,9 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		}
 	}
 
+	/*
+	* Send to Sales team
+	*/
 	triagr.sendToSales = function(t) {
 		if (t.team > 0 && t.priority > 0 ) {
 			sendMessage('sales',t);
@@ -230,8 +275,9 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		}
 	}
 
-
-
+	/*
+	* Solves a ticket with a customer-facing comment.
+	*/
 	triagr.solveTicket = function(t) {
 		if ( t.comment.length && t.team > 0 && t.priority > 0 ) {
 			var c = confirm('Are you sure you want to solve ticket ' + t.num + '?');
@@ -241,6 +287,9 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		}
 	}
 
+	/*
+	* Solves a ticket with a private comment.
+	*/
 	triagr.hiddenSolveTicket = function(t) {
 		if ( t.team > 0 && t.priority > 0 ) {
 			var c = confirm('Are you sure you want to hidden solve ticket ' + t.num + '?');
@@ -249,7 +298,10 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 			displayMessage('Make sure you have Team and Priority set.', 'OOPS', 'warning');
 		}
 	}
-
+	
+	/*
+	* Deletes a ticket from the system. Useful for spam tickets, duplicates, etc.
+	*/
 	triagr.trashTicket = function(t) {
 		var c = confirm('Are you sure you want to trash ticket ' + t.num + '?');
 		if (c) {
@@ -260,10 +312,16 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 		}
 	}
 
+	/*
+	* Hides a ticket until next refresh.
+	*/
 	triagr.hideTicket = function(t) {
 		removeTicket(t.num);
 	}
 
+	/*
+	* Pulls an activity log from the ticket.
+	*/
 	triagr.viewHistory = function (t) {
 		t.loadingHistory = 1;
 		$http.get('getTicketActionsJSON.cfm?ticket='+t.num).success (function( data ) {
@@ -274,6 +332,9 @@ app.controller('TriagrController', ['$scope','$http', function($scope, $http){
 	}
 }]);
 
+/*
+* Angular filter to enable pagination
+*/
 app.filter('startFrom', function() {
 return function(input, start) {
 	start = +start; //parse to int
@@ -315,6 +376,8 @@ function workingMinutesBetweenDates(startDate, endDate) {
     // Return the number of hours
     return minutesWorked;
 }
+
+//Parses minutes into a readable date string.
 function parseMinutes( mins ) {
 	var days = Math.floor( mins / 60 / 24 );
 	mins = mins - (days * 60 * 24);
